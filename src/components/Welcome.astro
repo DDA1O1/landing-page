@@ -10,7 +10,7 @@ const desktopLinuxArm64Link = "https://github.com/DDA1O1/drone_desktop/releases/
 const desktopWindowsLink = "https://github.com/DDA1O1/drone_desktop/releases/download/v1.1.0/DroneDesktop-Setup-x64.exe";
 const androidArm64Link = "https://github.com/DDA1O1/drone_mobile/releases/download/v1.0.7/app-arm64-v8a-release.apk"; // Link for arm64-v8a APK
 const androidArmeabiLink = "https://github.com/DDA1O1/drone_mobile/releases/download/v1.0.7/app-armeabi-v7a-release.apk"; // Link for armeabi-v7a APK
-const webAppLink = "#";
+const webAppLink = "https://live.d1o1.fun/";
 const sdkDocsLink = "https://dl-cdn.ryzerobotics.com/downloads/Tello/Tello%20SDK%202.0%20User%20Guide.pdf";
 
 // New Links for Card Content - REPLACE #
@@ -34,18 +34,6 @@ const githubTemplateLink = "#"; // Link to your GitHub template repository
 
 		<!-- Button Container -->
 		<section id="button-container">
-            <!-- Desktop App Dropdown -->
-            <div class="dropdown-container">
-                <button type="button" class="button dropdown-trigger">
-                    Desktop App
-                    <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href={desktopLinuxAmd64Link} rel="noopener noreferrer" class="dropdown-item">Linux Amd x64</a></li>
-                    <li><a href={desktopLinuxArm64Link} rel="noopener noreferrer" class="dropdown-item">Linux ARM x64</a></li>
-                    <li><a href={desktopWindowsLink} rel="noopener noreferrer" class="dropdown-item">Windows</a></li>
-                </ul>
-            </div>
 
             <!-- Android App Dropdown -->
             <div class="dropdown-container">
@@ -61,6 +49,23 @@ const githubTemplateLink = "#"; // Link to your GitHub template repository
 
             <!-- Web App Button -->
 			<a class="button" href={webAppLink}>Web App</a>
+
+            <!-- Desktop App Dropdown -->
+            <div class="dropdown-container">
+                <button type="button" class="button dropdown-trigger">
+                    Desktop App
+                    <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href={desktopLinuxAmd64Link} rel="noopener noreferrer" class="dropdown-item">Linux Amd x64</a></li>
+                    <li><a href={desktopLinuxArm64Link} rel="noopener noreferrer" class="dropdown-item">Linux ARM x64</a></li>
+                    <li><a href={desktopWindowsLink} rel="noopener noreferrer" class="dropdown-item">Windows</a></li>
+                </ul>
+            </div>
+
+            
+
+            
 		</section>
 
         <!-- Card Section -->
