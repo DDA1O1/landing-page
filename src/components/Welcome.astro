@@ -5,10 +5,11 @@ import InfoCard from './InfoCard.astro';
 import background from '../assets/background.svg';
 
 // Define placeholder URLs - REMEMBER TO REPLACE #
-const desktopLinuxX64Link = "#";
-const desktopLinuxArm64Link = "#";
-const desktopWindowsLink = "#";
-const androidAppLink = "#";
+const desktopLinuxAmd64Link = "https://github.com/DDA1O1/drone_desktop/releases/download/v1.1.0/drone-desktop_1.1.0_amd64-x64.deb";
+const desktopLinuxArm64Link = "https://github.com/DDA1O1/drone_desktop/releases/download/v1.1.0/drone-desktop_1.1.0_arm64-arm64.deb";
+const desktopWindowsLink = "https://github.com/DDA1O1/drone_desktop/releases/download/v1.1.0/DroneDesktop-Setup-x64.exe";
+const androidArm64Link = "https://github.com/DDA1O1/drone_mobile/releases/download/v1.0.7/app-arm64-v8a-release.apk"; // Link for arm64-v8a APK
+const androidArmeabiLink = "https://github.com/DDA1O1/drone_mobile/releases/download/v1.0.7/app-armeabi-v7a-release.apk"; // Link for armeabi-v7a APK
 const webAppLink = "#";
 const sdkDocsLink = "https://dl-cdn.ryzerobotics.com/downloads/Tello/Tello%20SDK%202.0%20User%20Guide.pdf";
 
@@ -40,14 +41,25 @@ const githubTemplateLink = "#"; // Link to your GitHub template repository
                     <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href={desktopLinuxX64Link} target="_blank" rel="noopener noreferrer" class="dropdown-item">Linux x64</a></li>
-                    <li><a href={desktopLinuxArm64Link} target="_blank" rel="noopener noreferrer" class="dropdown-item">Linux ARM x64</a></li>
-                    <li><a href={desktopWindowsLink} target="_blank" rel="noopener noreferrer" class="dropdown-item">Windows</a></li>
+                    <li><a href={desktopLinuxAmd64Link} rel="noopener noreferrer" class="dropdown-item">Linux Amd x64</a></li>
+                    <li><a href={desktopLinuxArm64Link} rel="noopener noreferrer" class="dropdown-item">Linux ARM x64</a></li>
+                    <li><a href={desktopWindowsLink} rel="noopener noreferrer" class="dropdown-item">Windows</a></li>
                 </ul>
             </div>
 
-            <!-- Other Buttons -->
-			<a class="button" href={androidAppLink} target="_blank" rel="noopener noreferrer">Android App</a>
+            <!-- Android App Dropdown -->
+            <div class="dropdown-container">
+                <button type="button" class="button dropdown-trigger">
+                    Android App
+                    <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href={androidArm64Link} rel="noopener noreferrer" class="dropdown-item">ARM64-v8a</a></li>
+                    <li><a href={androidArmeabiLink} rel="noopener noreferrer" class="dropdown-item">ARMeabi-v7a</a></li>
+                </ul>
+            </div>
+
+            <!-- Web App Button -->
 			<a class="button" href={webAppLink}>Web App</a>
 		</section>
 
