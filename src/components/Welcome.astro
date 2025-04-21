@@ -28,14 +28,19 @@ const githubTemplateLink = "https://github.com/DDA1O1/drone_web"; // Link to you
         <section id="hero-content">
             <h1>Explore Applications Built with Tello SDK</h1>
             <p class="description">
-                Access desktop, mobile, or web applications powered by the <a href={sdkDocsLink} target="_blank" rel="noopener noreferrer">Tello SDK</a>
+                Access desktop, mobile, or web applications powered by the <a href={sdkDocsLink} target="_blank" rel="noopener noreferrer">Tello SDK</a>.
             </p>
+            {/* START: Added Browser Recommendation */}
+            <p class="browser-recommendation">
+                For the best experience, particularly with the Web App, we recommend using the Google Chrome browser.
+            </p>
+            {/* END: Added Browser Recommendation */}
         </section>
 
 		<!-- Button Container -->
 		<section id="button-container">
-
-            <!-- Android App Dropdown -->
+            {/* ... (rest of the button/dropdown code remains unchanged) ... */}
+             <!-- Android App Dropdown -->
             <div class="dropdown-container">
                 <button type="button" class="button dropdown-trigger">
                     Android App
@@ -62,14 +67,11 @@ const githubTemplateLink = "https://github.com/DDA1O1/drone_web"; // Link to you
                     <li><a href={desktopWindowsLink} rel="noopener noreferrer" class="dropdown-item">Windows</a></li>
                 </ul>
             </div>
-
-            
-
-            
 		</section>
 
         <!-- Card Section -->
         <section id="card-section">
+             {/* ... (rest of the card section remains unchanged) ... */}
             <!-- Card 1: Technical Architecture -->
             <div class="card-wrapper card-1">
                 <InfoCard title="Technical Architecture">
@@ -140,6 +142,16 @@ const githubTemplateLink = "https://github.com/DDA1O1/drone_web"; // Link to you
     #hero-content .description a:hover { /* (Unchanged) */
         color: var(--link-light-hover); border-bottom-color: var(--link-light-hover);
     }
+
+    /* START: Added Browser Recommendation Style */
+    .browser-recommendation {
+        font-size: 0.9rem; /* Slightly smaller */
+        color: var(--text-light-secondary); /* Secondary text color */
+        margin-top: 16px; /* Space above */
+        font-style: italic; /* Italicize */
+    }
+    /* END: Added Browser Recommendation Style */
+
 	#button-container { /* (Unchanged) */
         display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; width: 100%; max-width: 800px; gap: 24px; margin-bottom: 80px;
     }
@@ -228,7 +240,14 @@ const githubTemplateLink = "https://github.com/DDA1O1/drone_web"; // Link to you
     }
 
     /* --- Dark Mode Adjustments --- */
-    /* (Inherited from InfoCard.astro and previous steps, no changes needed here) */
-    @media (prefers-color-scheme: dark) {}
+    @media (prefers-color-scheme: dark) {
+        /* START: Added Browser Recommendation Style - Dark Mode */
+        .browser-recommendation {
+             color: var(--text-dark-secondary); /* Use dark secondary color */
+        }
+         /* END: Added Browser Recommendation Style - Dark Mode */
+
+         /* Other dark mode styles remain unchanged */
+    }
 
 </style>
