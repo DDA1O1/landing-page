@@ -1,9 +1,8 @@
 // src/components/HeroSection.jsx
 import React, { useState, useEffect } from 'react';
-import './HeroSection.css'; // Ensure this file contains the animations defined previously
-import DropdownButton from './DropdownButton'; // Import the dropdown component
-// Import icons - FaFilePdf is already included
-import { FaAndroid, FaDesktop, FaGlobe, FaGithub, FaFilePdf } from 'react-icons/fa';
+import './HeroSection.css'; 
+import DropdownButton from './DropdownButton';
+import { FaAndroid, FaDesktop, FaGlobe, FaGithub, FaFilePdf, FaBook } from 'react-icons/fa';
 
 const HeroSection = () => {
   // State for cycling through platforms in the sub-headline
@@ -14,7 +13,8 @@ const HeroSection = () => {
   const [showSubHeadline, setShowSubHeadline] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
-  const [showArchitecture, setShowArchitecture] = useState(false); // State for architecture section
+  const [showArchitecture, setShowArchitecture] = useState(false);
+  const [showDocsSection, setShowDocsSection] = useState(false);
 
   // --- Cloudinary URLs ---
   const videoUrl = 'https://res.cloudinary.com/debashish/video/upload/f_auto,q_auto/v1745503372/ScreenRec_2025-04-24_12-55-06_-_MERGE_-_Videobolt.net_-_MERGE_mgrlch.mp4';
@@ -26,25 +26,29 @@ const HeroSection = () => {
   // --- End GitHub URL ---
 
   // --- Architecture PDF Links ---
-  // !!! IMPORTANT: Replace these placeholders with your actual PDF URLs !!!
   const architectureOptions = [
     {
       label: 'Desktop Architecture',
-      href: 'https://github.com/user-attachments/files/19825140/Drone.Desktop.-.Technical.Documentation.pdf', // <-- REPLACE THIS URL
-      download: 'Desktop_Architecture.pdf' // Suggests filename for download
+      href: 'https://github.com/user-attachments/files/19825140/Drone.Desktop.-.Technical.Documentation.pdf',
+      download: 'Desktop_Architecture.pdf'
     },
     {
       label: 'Mobile Architecture',
-      href: 'https://github.com/user-attachments/files/19825200/Drone.Control.App.-.Technical.Documentation.pdf', // <-- REPLACE THIS URL
-      download: 'Mobile_Architecture.pdf' // Suggests filename for download
+      href: 'https://github.com/user-attachments/files/19825200/Drone.Control.App.-.Technical.Documentation.pdf',
+      download: 'Mobile_Architecture.pdf'
     },
     {
       label: 'Web Architecture',
-      href: 'https://github.com/user-attachments/files/19825115/Tello.Drone.Control.System.-.Technical.Documentation.3.pdf', // <-- REPLACE THIS URL
-      download: 'Web_Architecture.pdf' // Suggests filename for download
+      href: 'https://github.com/user-attachments/files/19825115/Tello.Drone.Control.System.-.Technical.Documentation.3.pdf',
+      download: 'Web_Architecture.pdf'
     },
   ];
   // --- End Architecture PDF Links ---
+
+  // --- Personal Documentation Site URL ---
+  // !!! IMPORTANT: Replace this with the actual URL to your docs site !!!
+  const personalDocsUrl = 'https://docs.d1o1.fun/'; // <--- REPLACE THIS
+  // --- End Personal Documentation Site URL ---
 
 
   // Effect to trigger the appearance of elements sequentially
@@ -52,13 +56,15 @@ const HeroSection = () => {
     const subHeadlineTimer = setTimeout(() => setShowSubHeadline(true), 1500);
     const buttonsTimer = setTimeout(() => setShowButtons(true), 2000);
     const videoTimer = setTimeout(() => setShowVideo(true), 2500);
-    const architectureTimer = setTimeout(() => setShowArchitecture(true), 3000); // Timer for architecture section
+    const architectureTimer = setTimeout(() => setShowArchitecture(true), 3000);
+    const docsTimer = setTimeout(() => setShowDocsSection(true), 3500);
 
     return () => {
       clearTimeout(subHeadlineTimer);
       clearTimeout(buttonsTimer);
       clearTimeout(videoTimer);
-      clearTimeout(architectureTimer); // Clear architecture timer
+      clearTimeout(architectureTimer);
+      clearTimeout(docsTimer);
     };
   }, []);
 
@@ -172,25 +178,38 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* --- MODIFIED: Technical Architecture Section --- */}
-      <div className={`mt-12 md:mt-16 w-full max-w-3xl mx-auto transition-opacity duration-1000 ${showArchitecture ? 'opacity-100' : 'opacity-0'} flex flex-col items-center`}> {/* Added flex center */}
+      {/* Technical Architecture Section */}
+      <div className={`mt-12 md:mt-16 w-full max-w-3xl mx-auto transition-opacity duration-1000 ${showArchitecture ? 'opacity-100' : 'opacity-0'} flex flex-col items-center`}>
          <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">Explore the Architecture</h2>
          <p className="text-base md:text-lg text-gray-600 mb-6">
             Dive deeper into the design and technologies used across our mobile, desktop, and web platforms. Download the relevant PDF below.
          </p>
-         {/* Using DropdownButton for Architecture PDFs */}
          <DropdownButton
-            label="Architecture Details" // Changed label
-            options={architectureOptions} // Passed the new options array
-            icon={FaFilePdf} // Use the PDF icon
-            // Applying teal color for consistency with previous single button, or choose another like emerald/gray
-            // Note: DropdownButton internal style applies bg-emerald-600 by default.
-            // If you want a different color, you'd need to pass a className or modify DropdownButton.
-            // For now, let's rely on the default styling which is emerald. Add a comment if teal is preferred.
-            // className="bg-teal-600 hover:bg-teal-700 focus-visible:ring-teal-500" // Example if modifying DropdownButton or passing className prop
+            label="Architecture Details"
+            options={architectureOptions}
+            icon={FaFilePdf}
          />
       </div>
-      {/* --- END: Technical Architecture Section --- */}
+
+      {/* --- NEW: Personal Documentation Section --- */}
+      <div className={`mt-12 md:mt-16 w-full max-w-3xl mx-auto transition-opacity duration-1000 ${showDocsSection ? 'opacity-100' : 'opacity-0'} flex flex-col items-center`}>
+         <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">My Learning & Documentation</h2>
+         <p className="text-base md:text-lg text-gray-600 mb-6">
+            Beyond this project, I actively document my learnings and explorations in technology. Visit my personal documentation site to see more.
+         </p>
+         <a
+           href={personalDocsUrl} // Use the variable defined above
+           target="_blank"
+           rel="noopener noreferrer"
+           // Using indigo color as an example, feel free to change
+           className="inline-flex w-full sm:w-auto justify-center items-center gap-x-2 rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+           title="Visit my personal documentation site" // Tooltip for the link
+         >
+           <FaBook className="h-5 w-5" aria-hidden="true" /> {/* Use the Book icon */}
+           Explore My Docs
+         </a>
+      </div>
+      {/* --- END: Personal Documentation Section --- */}
 
     </div> // End of main container
   );
