@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+body {
+  background-color: #f0fdf4; /* Optional: fallback/base light green background */
+  background-image: url('/green-background.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover; /* Or 'contain', or fixed dimensions */
+  min-height: 100vh; /* Ensure body covers viewport height */
+}
+
+/* Make sure root element or content container doesn't obscure the body background */
+#root {
+   /* Add styles if needed, e.g., padding */
+}
+
+/* You might want a container for your app content with its own background
+   if you don't want the SVG directly behind text */
+.content-container {
+  background-color: rgba(255, 255, 255, 0.8); /* Example: Semi-transparent white */
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem; /* Example spacing */
+  position: relative; /* Keeps it above the absolute positioned background if using Method B */
+  z-index: 1;
+}

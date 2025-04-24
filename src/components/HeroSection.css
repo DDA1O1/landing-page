@@ -1,0 +1,58 @@
+/* src/components/HeroSection.css */
+
+/* If you haven't configured Tailwind to process CSS files directly or use PostCSS import, */
+/* you might need to include these directives if this file is processed by Tailwind. */
+/* Otherwise, ensure your global src/index.css imports Tailwind correctly. */
+/* @tailwind base; */
+/* @tailwind components; */
+/* @tailwind utilities; */
+
+/* Animation for headline words sliding/fading in */
+@keyframes fade-slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px); /* Start slightly below */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0); /* End at normal position */
+    }
+  }
+  
+  /* Apply the animation to elements with this class */
+  .animate-fade-slide-in {
+    animation: fade-slide-in 0.6s ease-out forwards; /* 'forwards' keeps the end state */
+    /* `opacity: 0` is set inline via className initially */
+  }
+  
+  
+  /* Animation for the cycling platform text fading in */
+  /* This gets re-triggered because the `key` prop changes in React */
+  @keyframes fade-in-fast {
+   0% {
+      opacity: 0;
+      transform: translateY(5px); /* Optional: slight upward movement */
+   }
+   100% {
+      opacity: 1;
+      transform: translateY(0);
+   }
+  }
+  
+  .animate-fade-in-fast {
+    animation: fade-in-fast 0.4s ease-in forwards;
+  }
+  
+  /* Optional: Add support for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-slide-in,
+    .animate-fade-in-fast {
+      animation: none; /* Disable animations */
+      opacity: 1 !important; /* Ensure text is visible immediately */
+      transform: none !important; /* Reset any transform */
+    }
+  
+    /* Ensure the cycling text is just statically visible in reduced motion */
+    /* (The JS logic still cycles, but the animation won't play) */
+    /* No extra class needed due to animation: none */
+  }
