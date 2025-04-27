@@ -191,7 +191,7 @@ const HeroSection = () => {
          />
       </div>
 
-      {/* --- NEW: Personal Documentation Section --- */}
+      {/* ---  Personal Documentation Section --- */}
       <div className={`mt-12 md:mt-16 w-full max-w-3xl mx-auto transition-opacity duration-1000 ${showDocsSection ? 'opacity-100' : 'opacity-0'} flex flex-col items-center`}>
          <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">My Learning & Documentation</h2>
          <p className="text-base md:text-lg text-gray-600 mb-6">
