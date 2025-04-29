@@ -1,8 +1,9 @@
 // src/components/HeroSection.jsx
 import React, { useState, useEffect } from 'react';
-import './HeroSection.css'; 
+import './HeroSection.css';
 import DropdownButton from './DropdownButton';
-import { FaAndroid, FaDesktop, FaGlobe, FaGithub, FaFilePdf, FaBook } from 'react-icons/fa';
+// Added FaCode for the new section button
+import { FaAndroid, FaDesktop, FaGlobe, FaGithub, FaFilePdf, FaBook, FaCode } from 'react-icons/fa';
 
 const HeroSection = () => {
   // State for cycling through platforms in the sub-headline
@@ -15,15 +16,19 @@ const HeroSection = () => {
   const [showVideo, setShowVideo] = useState(false);
   const [showArchitecture, setShowArchitecture] = useState(false);
   const [showDocsSection, setShowDocsSection] = useState(false);
+  // --- NEW: State for the object detection section ---
+  const [showObjectDetection, setShowObjectDetection] = useState(false);
+  // --- END NEW ---
 
   // --- Cloudinary URLs ---
   const videoUrl = 'https://res.cloudinary.com/debashish/video/upload/f_auto,q_auto/v1745503372/ScreenRec_2025-04-24_12-55-06_-_MERGE_-_Videobolt.net_-_MERGE_mgrlch.mp4';
   const posterUrl = 'https://res.cloudinary.com/debashish/video/upload/f_jpg,q_auto,so_1/v1745503372/ScreenRec_2025-04-24_12-55-06_-_MERGE_-_Videobolt.net_-_MERGE_mgrlch.jpg';
   // --- End Cloudinary URLs ---
 
-  // --- GitHub URL ---
+  // --- GitHub URLs ---
   const githubOrgUrl = 'https://github.com/DDA1O1/drone_web';
-  // --- End GitHub URL ---
+  const objectDetectionRepoUrl = 'https://github.com/DDA1O1/tello_python';
+ 
 
   // --- Architecture PDF Links ---
   const architectureOptions = [
@@ -46,8 +51,7 @@ const HeroSection = () => {
   // --- End Architecture PDF Links ---
 
   // --- Personal Documentation Site URL ---
-  // !!! IMPORTANT: Replace this with the actual URL to your docs site !!!
-  const personalDocsUrl = 'https://docs.d1o1.fun/'; // <--- REPLACE THIS
+  const personalDocsUrl = 'https://docs.d1o1.fun/';
   // --- End Personal Documentation Site URL ---
 
 
@@ -58,6 +62,7 @@ const HeroSection = () => {
     const videoTimer = setTimeout(() => setShowVideo(true), 2500);
     const architectureTimer = setTimeout(() => setShowArchitecture(true), 3000);
     const docsTimer = setTimeout(() => setShowDocsSection(true), 3500);
+    const objectDetectionTimer = setTimeout(() => setShowObjectDetection(true), 2500);
 
     return () => {
       clearTimeout(subHeadlineTimer);
@@ -65,6 +70,8 @@ const HeroSection = () => {
       clearTimeout(videoTimer);
       clearTimeout(architectureTimer);
       clearTimeout(docsTimer);
+      clearTimeout(objectDetectionTimer);
+      
     };
   }, []);
 
@@ -178,6 +185,26 @@ const HeroSection = () => {
         </div>
       </div>
 
+      {/* --- NEW: Object Detection Section --- */}
+      <div className={`mt-12 md:mt-16 w-full max-w-3xl mx-auto transition-opacity duration-1000 ${showObjectDetection ? 'opacity-100' : 'opacity-0'} flex flex-col items-center`}>
+         <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">Run Object Detection Locally</h2>
+         <p className="text-base md:text-lg text-gray-600 mb-6">
+            Interested in leveraging the drone's video feed for object detection? Access the repository below to set up and run the detection model on your own machine.
+         </p>
+         <a
+           href={objectDetectionRepoUrl} // Use the variable defined above
+           target="_blank"
+           rel="noopener noreferrer"
+           // Example using purple, adjust colors as needed
+           className="inline-flex w-full sm:w-auto justify-center items-center gap-x-2 rounded-md bg-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-700 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+           title="Go to the Object Detection GitHub repository" // Tooltip for the link
+         >
+           <FaCode className="h-5 w-5" aria-hidden="true" /> {/* Code icon */}
+           Get Local Detection Code
+         </a>
+      </div>
+      {/* --- END: Object Detection Section --- */}
+
       {/* Technical Architecture Section */}
       <div className={`mt-12 md:mt-16 w-full max-w-3xl mx-auto transition-opacity duration-1000 ${showArchitecture ? 'opacity-100' : 'opacity-0'} flex flex-col items-center`}>
          <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">Explore the Architecture</h2>
@@ -191,25 +218,23 @@ const HeroSection = () => {
          />
       </div>
 
-      {/* ---  Personal Documentation Section --- */}
+      {/* Personal Documentation Section */}
       <div className={`mt-12 md:mt-16 w-full max-w-3xl mx-auto transition-opacity duration-1000 ${showDocsSection ? 'opacity-100' : 'opacity-0'} flex flex-col items-center`}>
          <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">My Learning & Documentation</h2>
          <p className="text-base md:text-lg text-gray-600 mb-6">
             Beyond this project, I actively document my learnings and explorations in technology. Visit my personal documentation site to see more.
          </p>
          <a
-           href={personalDocsUrl} // Use the variable defined above
+           href={personalDocsUrl}
            target="_blank"
            rel="noopener noreferrer"
-           // Using indigo color as an example, feel free to change
            className="inline-flex w-full sm:w-auto justify-center items-center gap-x-2 rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
-           title="Visit my personal documentation site" // Tooltip for the link
+           title="Visit my personal documentation site"
          >
-           <FaBook className="h-5 w-5" aria-hidden="true" /> {/* Use the Book icon */}
+           <FaBook className="h-5 w-5" aria-hidden="true" />
            Explore My Docs
          </a>
       </div>
-      {/* --- END: Personal Documentation Section --- */}
 
     </div> // End of main container
   );
