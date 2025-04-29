@@ -81,7 +81,7 @@ const HeroSection = () => {
     if (showSubHeadline) {
       intervalId = setInterval(() => {
         setCurrentPlatformIndex(prevIndex => (prevIndex + 1) % platforms.length);
-      }, 2500);
+      }, 1500);
     }
     return () => clearInterval(intervalId);
   }, [showSubHeadline, platforms.length]);
